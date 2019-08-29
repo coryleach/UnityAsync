@@ -1,0 +1,1 @@
+{ "name": "com.gameframe.async.Editor", "references": [ "com.gameframe.async" ], "optionalUnityReferences": [], "includePlatforms": [ "Editor" ], "excludePlatforms": [] }

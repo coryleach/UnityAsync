@@ -1,0 +1,1 @@
+{ "name": "com.gameframe.async.Editor.Tests", "references": [ "com.gameframe.async" ], "optionalUnityReferences": ["TestAssemblies"], "includePlatforms": [ "Editor" ], "excludePlatforms": [] }
