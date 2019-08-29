@@ -8,7 +8,7 @@ using System.Threading;
 using UnityEditorInternal;
 using UnityEngine;
 
-namespace PanelSystem.Runtime.Coroutines
+namespace Gameframe.Async.Coroutines
 {
     public class CoroutineWrapper
     {

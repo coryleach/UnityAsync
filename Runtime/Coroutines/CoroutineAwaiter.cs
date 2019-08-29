@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
-using UnityEngine;
 
-namespace PanelSystem.Runtime.Coroutines
+namespace Gameframe.Async.Coroutines
 {
     public class CoroutineAwaiter : INotifyCompletion
     {

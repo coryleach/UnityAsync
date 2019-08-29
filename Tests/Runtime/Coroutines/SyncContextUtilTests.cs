@@ -3,11 +3,10 @@ using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using PanelSystem.Runtime.Coroutines;
 using UnityEngine;
 using UnityEngine.TestTools;
 
-namespace PanelSystem.Tests.Runtime.Coroutines
+namespace Gameframe.Async.Tests
 {
     public class SyncContextUtilTests
     {

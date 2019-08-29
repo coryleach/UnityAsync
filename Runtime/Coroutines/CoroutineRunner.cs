@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PanelSystem.Runtime.Coroutines
+namespace Gameframe.Async.Coroutines
 {
     
     public class CoroutineRunner : MonoBehaviour

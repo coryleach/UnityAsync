@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace PanelSystem.Runtime.Coroutines
+namespace Gameframe.Async
 {
+    using Coroutines;
+
     public static class SyncContextUtil
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
