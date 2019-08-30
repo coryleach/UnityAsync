@@ -66,6 +66,18 @@ namespace Gameframe.Async
             await task;
             return task.Result;
         }
+        
+        public static async Task RunOnUnityThreadAsync(Action action)
+        {
+            if (CurrentThreadIsUnityThread)
+            {
+                action.Invoke();
+                return;
+            }
+            var taskFactory = new TaskFactory(UnityTaskScheduler);
+            var task = taskFactory.StartNew(action);
+            await task;
+        }
 
         public static void RunOnUnityThread(Action action)
         {

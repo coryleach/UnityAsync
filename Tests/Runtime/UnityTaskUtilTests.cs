@@ -175,8 +175,6 @@ namespace Gameframe.Async.Tests
             Assert.IsTrue(UnityTaskUtil.UnityTaskScheduler != null);
         }
         
-        
-        
         private static IEnumerator TestCoroutine(Func<bool> action)
         {
             while (action.Invoke())
@@ -196,6 +194,5 @@ namespace Gameframe.Async.Tests
         public class TestHostBehaviour : MonoBehaviour
         {
         }
-
     }
 }
