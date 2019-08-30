@@ -152,6 +152,32 @@ namespace Gameframe.Async.Tests
             Assert.IsTrue(task.IsCompleted);
         }
 
+        [Test]
+        public void UnityTaskFactory_NotNull()
+        {
+            Assert.IsTrue(SyncContextUtil.UnityTaskFactory != null);
+        }
+
+        [Test]
+        public void UnityThreadId_IsMainThreadId()
+        {
+            Assert.IsTrue(SyncContextUtil.UnityThreadId == System.Threading.Thread.CurrentThread.ManagedThreadId);
+        }
+
+        [Test]
+        public void UnitySynchronizationContext_NotNull()
+        {
+            Assert.IsTrue(SyncContextUtil.UnitySynchronizationContext != null);
+        }
+
+        [Test]
+        public void UnityTaskScheduler_NotNull()
+        {
+            Assert.IsTrue(SyncContextUtil.UnityTaskScheduler != null);
+        }
+        
+        
+        
         private static IEnumerator TestCoroutine(Func<bool> action)
         {
             while (action.Invoke())
@@ -167,7 +193,7 @@ namespace Gameframe.Async.Tests
                 yield return null;
             }
         }
-
+        
         public class TestHostBehaviour : MonoBehaviour
         {
         }
