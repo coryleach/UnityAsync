@@ -8,7 +8,7 @@ namespace Gameframe.Async
 {
     using Coroutines;
 
-    public static class SyncContextUtil
+    public static class UnityTaskUtil
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Install()
@@ -83,7 +83,6 @@ namespace Gameframe.Async
         {
             var task = UnityTaskFactory.StartNew(() =>
             {
-                //TODO: Put a check or warning here? prefab or parent may be destroyed before we get here if it's async
                 var instance = UnityEngine.Object.Instantiate(prefab, parent);
                 instance.name = prefab.name;
                 return instance;

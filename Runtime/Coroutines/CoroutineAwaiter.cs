@@ -16,7 +16,7 @@ namespace Gameframe.Async.Coroutines
             isCompleted = true;
             if (_continuation != null)
             {
-                SyncContextUtil.RunOnUnityThread(_continuation);
+                UnityTaskUtil.RunOnUnityThread(_continuation);
             }
         }
 
