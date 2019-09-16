@@ -8,7 +8,7 @@
 
 > Async task utility package for Unity
 > Helper methods for starting tasks on the Unity thread.
-> Start coroutines and await coroutines from any thread.
+> Start and await coroutines from any thread.
 
 ## Author
 
