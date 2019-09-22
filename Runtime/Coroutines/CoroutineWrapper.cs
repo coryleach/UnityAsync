@@ -5,7 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace Gameframe.Async.Coroutines
@@ -19,7 +18,7 @@ namespace Gameframe.Async.Coroutines
         public CoroutineWrapper()
         {
         }
-        
+
         public CoroutineWrapper(CancellationToken token)
         {
             _token = token;
@@ -33,7 +32,7 @@ namespace Gameframe.Async.Coroutines
             }
             return _awaiter;
         }
-        
+
         public IEnumerator Run(IEnumerator coroutine)
         {
             _processStack.Push(coroutine);
@@ -69,11 +68,11 @@ namespace Gameframe.Async.Coroutines
                         yield return currentCoroutine.Current;
                     }
                 }
-                
+
             }
 
             _awaiter?.Complete(null);
         }
     }
-    
+
 }
