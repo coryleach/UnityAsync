@@ -1,7 +1,7 @@
 {
     "name": "com.gameframe.async",
     "displayName": "Gameframe.Async",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Async task utility library for Unity",
     "unity": "2018.2",
     "unityRelease": "13f1",
