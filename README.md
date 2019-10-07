@@ -21,6 +21,22 @@ var task = CoroutineRunner.Start(MyCoroutine());
 await task;
 ```
 
+### Switch between Main thread and Background thread in any task
+```c#
+
+// Currently on main thread
+await Awaiters.BackgroundThread;
+//You should now be on a background thread
+
+//Await one frame
+await Awaiters.NextFrame;
+
+//Currently on a background thread
+await Awaiters.MainUnityThread;
+//Task is now running on the Unity main thread
+
+```
+
 ## Install 
 
 #### Using UnityPackageManager (for Unity 2018.3 or later)
