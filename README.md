@@ -17,7 +17,7 @@
 //Start a coroutine from anywhere without a monobehaviour
 //Your coroutine will run on the main thread
 var task = CoroutineRunner.Start(MyCoroutine());
-//You can await return task which will resume when the coroutine is completed
+//You can await the returned task which will complete when the coroutine is done
 await task;
 ```
 
