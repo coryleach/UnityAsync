@@ -10,6 +10,19 @@
 > Helper methods for starting tasks on the Unity thread.
 > Start and await coroutines from any thread.
 
+## Quick Start
+
+### Start and Await a coroutine from anywhere
+```c#
+//Start a coroutine from anywhere without a monobehaviour
+//Your coroutine will run on the main thread
+var task = CoroutineRunner.Start(MyCoroutine());
+//You can await return task which will resume when the coroutine is completed
+await task;
+```
+
+## Install 
+
 #### Using UnityPackageManager (for Unity 2018.3 or later)
 
 Find the manifest.json file in the Packages folder of your project and edit it to look like this:
