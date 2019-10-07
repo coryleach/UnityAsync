@@ -29,18 +29,6 @@ namespace Gameframe.Async
 
         public static SynchronizationContext UnitySynchronizationContext { get; private set; }
 
-        private static void RunOnUnityScheduler(Action action)
-        {
-            if (SynchronizationContext.Current == UnitySynchronizationContext)
-            {
-                action();
-            }
-            else
-            {
-                UnitySynchronizationContext.Post(_ => action(), null);
-            }
-        }
-
         public static CoroutineWrapper StartCoroutineAsync(IEnumerator coroutine, MonoBehaviour host)
         {
             var wrapper = new CoroutineWrapper();
@@ -54,7 +42,31 @@ namespace Gameframe.Async
             RunOnUnityScheduler(() => { host.StartCoroutine(wrapper.Run(coroutine)); });
             return wrapper;
         }
+        
+        /// <summary>
+        /// Invokes an action on the Unity main thread.
+        /// Will invoke immediately if already on the main thread.
+        /// </summary>
+        /// <param name="action">Action to be invoked</param>
+        private static void RunOnUnityScheduler(Action action)
+        {
+            if (SynchronizationContext.Current == UnitySynchronizationContext)
+            {
+                action();
+            }
+            else
+            {
+                UnitySynchronizationContext.Post(_ => action(), null);
+            }
+        }
 
+        /// <summary>
+        /// Runs the given function on the Unity main thread
+        /// Will invoke immediately if already on the main thread
+        /// </summary>
+        /// <param name="func">Method to be invoked</param>
+        /// <typeparam name="T">Return type of the method</typeparam>
+        /// <returns>Task with result type T</returns>
         public static async Task<T> RunOnUnityThreadAsync<T>(Func<T> func)
         {
             if (CurrentThreadIsUnityThread)
@@ -67,6 +79,12 @@ namespace Gameframe.Async
             return task.Result;
         }
         
+        /// <summary>
+        /// Runs the given action on the Unity main thread
+        /// Will invoke immediately if already on the main thread
+        /// </summary>
+        /// <param name="action">Action to be invoked</param>
+        /// <returns>Task</returns>
         public static async Task RunOnUnityThreadAsync(Action action)
         {
             if (CurrentThreadIsUnityThread)
@@ -79,6 +97,11 @@ namespace Gameframe.Async
             await task;
         }
 
+        /// <summary>
+        /// Runs the given action the Unity thread
+        /// Will invoke immediatley if already on the Unity main thread
+        /// </summary>
+        /// <param name="action">Action to be invoked</param>
         public static void RunOnUnityThread(Action action)
         {
             if (CurrentThreadIsUnityThread)
@@ -90,7 +113,36 @@ namespace Gameframe.Async
                 UnitySynchronizationContext.Post(_=> action(), null);
             }
         }
+        
+        /// <summary>
+        /// Runs the given async delegate on the Unity main thread
+        /// </summary>
+        /// <param name="funcAsync">async delegate</param>
+        /// <typeparam name="T">return value of delegate</typeparam>
+        /// <returns>value of type T</returns>
+        public static Task<T> RunOnUnityThreadAsync<T>( Func<Task<T>> funcAsync )
+        {
+            return CurrentThreadIsUnityThread ? funcAsync() : Task.Factory.StartNew( funcAsync, CancellationToken.None, TaskCreationOptions.None, UnityTaskScheduler ).Unwrap();
+        }
 
+        /// <summary>
+        /// Runs the given async delegate on the Unity main thread
+        /// </summary>
+        /// <param name="funcAsync">async delegate</param>
+        /// <returns>Task</returns>
+        public static Task RunOnUnityThreadAsync( Func<Task> funcAsync )
+        {
+            return CurrentThreadIsUnityThread ? funcAsync() : Task.Factory.StartNew( funcAsync, CancellationToken.None, TaskCreationOptions.None, UnityTaskScheduler ).Unwrap();
+        }
+
+        /// <summary>
+        /// Instantiate a prefab asynchronously
+        /// Always creates a task on the Unity task scheduler even if already on the main thread.
+        /// </summary>
+        /// <param name="prefab">Prefab to be instantiated</param>
+        /// <param name="parent">Transform the prefab should be parented to</param>
+        /// <typeparam name="T">Type of the prefab</typeparam>
+        /// <returns>Task that contains the instantiated prefab as the result</returns>
         public static async Task<T> InstantiateAsync<T>(T prefab, Transform parent = null) where T : UnityEngine.Object
         {
             var task = UnityTaskFactory.StartNew(() =>

@@ -34,7 +34,7 @@ namespace Gameframe.Async.Tests
             
             //Await the next frame
             int frame = Time.frameCount;
-            await Task.Yield();
+            await Awaiters.NextFrame;
             Assert.IsTrue(UnityTaskUtil.CurrentThreadIsUnityThread);
             Assert.IsTrue(Time.frameCount == frame+1);
             

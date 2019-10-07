@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Gameframe.Async.Coroutines
 {
-    public class CoroutineRunner
+    public static class CoroutineRunner
     {
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
         private static void Install()
