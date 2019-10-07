@@ -21,6 +21,14 @@ var task = CoroutineRunner.Start(MyCoroutine());
 await task;
 ```
 
+### Start a Task on the main unity thread from anywhere
+```c#
+//This will execute MyMethod on the main Unity thread
+var task = UnityTaskUtil.RunOnUnityThreadAsync(MyMethod);
+//A task is returned that you can await
+await task;
+```
+
 ### Switch between Main thread and Background thread in any task
 ```c#
 
