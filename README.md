@@ -6,6 +6,10 @@
   </a>
 </p>
 
+> Async task utility package for Unity</br>
+> Helper methods for starting tasks on the Unity thread.</br>
+> Start and await coroutines from any thread.</br>
+
 ## Quick Package Install
 
 #### Using UnityPackageManager (for Unity 2019.1 or later)
@@ -19,10 +23,6 @@ Find the manifest.json file in the Packages folder of your project and edit it t
   },
 }
 ```
-
-> Async task utility package for Unity</br>
-> Helper methods for starting tasks on the Unity thread.</br>
-> Start and await coroutines from any thread.</br>
 
 ## Quick Start
 
