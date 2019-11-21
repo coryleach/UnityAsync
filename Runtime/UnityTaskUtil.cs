@@ -19,8 +19,8 @@ namespace Gameframe.Async
             UnityTaskFactory = new TaskFactory<UnityEngine.Object>(UnityTaskScheduler);
         }
 
-        public static bool CurrentThreadIsUnityThread => SynchronizationContext.Current == UnitySynchronizationContext;
-
+        public static bool CurrentThreadIsUnityThread => UnityThreadId == Thread.CurrentThread.ManagedThreadId;
+        
         public static TaskScheduler UnityTaskScheduler { get; private set; }
 
         public static TaskFactory<UnityEngine.Object> UnityTaskFactory { get; private set; }

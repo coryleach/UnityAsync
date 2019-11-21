@@ -28,9 +28,51 @@ namespace Gameframe.Async
 
     public class WaitForBackground
     {
-        public ConfiguredTaskAwaitable.ConfiguredTaskAwaiter GetAwaiter()
+        private class BackgroundThreadJoinAwaiter : IAwaitable
         {
-            return Task.Run(() => {}).ConfigureAwait(false).GetAwaiter();
+            private Action _continuation = null;
+            private bool isCompleted = false;
+            public bool IsCompleted => isCompleted;
+
+            public void Complete()
+            {
+                isCompleted = true;
+                _continuation?.Invoke();
+            }
+
+            public void GetResult()
+            {
+                do
+                {
+                } while (!isCompleted);
+            }
+
+            void INotifyCompletion.OnCompleted(Action continuation)
+            {
+                if (isCompleted)
+                {
+                    throw new InvalidOperationException("Continuation is invalid. This awaiter is already completed.");
+                }
+                _continuation = continuation;
+            }
+        }
+        
+        public IAwaitable GetAwaiter()
+        {
+            //Doing Task.Run(()=>{}).ConfigureAwait(false) will apparently sometimes still resume on the main thread
+            //Updated to the below pattern to ensure we actually will be running in the background when we resume
+            var awaiter = new BackgroundThreadJoinAwaiter();
+            Task.Run(async () =>
+            {
+                //Doing complete immediately without a yield appears to cause the awaiter to never resume
+                //I'm not entirely sure as to why.
+                //I suspected maybe Complete() was getting called before the the method doing the awaiting could add its continuation
+                //However when I added a check and exception for this I did not see it get thrown.
+                //Adding the await Task.Yield however appeared to get Unit tests to consistently pass.
+                await Task.Yield(); 
+                awaiter.Complete(); 
+            });
+            return awaiter;
         }
     }
 

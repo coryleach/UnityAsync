@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Threading;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using UnityEngine;
@@ -8,25 +9,32 @@ namespace Gameframe.Async.Tests
 {
     public class AwaitersTests
     {
-        [UnityTest]
+        [UnityTest, Timeout(1000)]
         public IEnumerator TestBackgroundAndMainThreadAwaiters()
         {
+            yield return null;
             var task = DoTest();
             yield return task.AsIEnumerator();
         }
         
         private async Task DoTest()
         {
+            Assert.IsTrue(UnityTaskUtil.UnitySynchronizationContext != null);
+            
             //Start on unity thread
             Assert.IsTrue(UnityTaskUtil.CurrentThreadIsUnityThread);
+
+            //Test Migration Multiple times just to be sure
+            for (int i = 0; i < 10; i++)
+            {
+                //Migrate to background thread
+                await Awaiters.BackgroundThread;            
+                Assert.IsFalse(UnityTaskUtil.CurrentThreadIsUnityThread,$"Expected to be on background thread. CurrentThread:{Thread.CurrentThread.ManagedThreadId} UnityThreadId:{UnityTaskUtil.UnityThreadId}");
             
-            //Migrate to background thread
-            await Awaiters.BackgroundThread;            
-            Assert.IsFalse(UnityTaskUtil.CurrentThreadIsUnityThread);
-            
-            //Migrate back to main thread
-            await Awaiters.MainUnityThread;
-            Assert.IsTrue(UnityTaskUtil.CurrentThreadIsUnityThread);
+                //Migrate back to main thread
+                await Awaiters.MainUnityThread;
+                Assert.IsTrue(UnityTaskUtil.CurrentThreadIsUnityThread,$"Expected to be on main thread. CurrentThread:{Thread.CurrentThread.ManagedThreadId} UnityThreadId:{UnityTaskUtil.UnityThreadId}");
+            }
             
             //Await the main thread when already on the main thread should do nothing
             await Awaiters.MainUnityThread;
