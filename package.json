@@ -1,14 +1,12 @@
 {
-    "name": "com.gameframe.async",
-    "displayName": "Gameframe.Async",
-    "version": "1.0.2",
-    "description": "Async task utility library for Unity",
-    "unity": "2018.2",
-    "unityRelease": "13f1",
-    "keywords": [],
-    "author": {
-        "name": "Cory Leach",
-        "email": "cory.leach@gmail.com",
-        "url": "https://coryleach.info"
-    }
+  "name": "com.gameframe.async",
+  "displayName": "Gameframe.Async",
+  "version": "1.0.3",
+  "description": "Async task utility library for Unity",
+  "keywords": [],
+  "author": {
+    "name": "Cory Leach",
+    "email": "cory.leach@gmail.com",
+    "url": "https://coryleach.info"
+  }
 }

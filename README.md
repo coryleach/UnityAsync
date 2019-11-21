@@ -1,6 +1,6 @@
 <h1 align="center">Welcome to com.gameframe.async 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.2-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
   <a href="https://twitter.com/coryleach">
     <img alt="Twitter: coryleach" src="https://img.shields.io/twitter/follow/coryleach.svg?style=social" target="_blank" />
   </a>
@@ -45,7 +45,7 @@ await Awaiters.MainUnityThread;
 
 ```
 
-## Install 
+## Install
 
 #### Using UnityPackageManager (for Unity 2018.3 or later)
 
@@ -53,7 +53,7 @@ Find the manifest.json file in the Packages folder of your project and edit it t
 ```js
 {
   "dependencies": {
-    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.2",
+    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.3",
     ...
   },
 }
