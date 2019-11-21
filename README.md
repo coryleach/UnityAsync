@@ -6,9 +6,23 @@
   </a>
 </p>
 
-> Async task utility package for Unity
-> Helper methods for starting tasks on the Unity thread.
-> Start and await coroutines from any thread.
+## Quick Package Install
+
+#### Using UnityPackageManager (for Unity 2019.1 or later)
+
+Find the manifest.json file in the Packages folder of your project and edit it to look like this:
+```js
+{
+  "dependencies": {
+    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.3",
+    ...
+  },
+}
+```
+
+> Async task utility package for Unity</br>
+> Helper methods for starting tasks on the Unity thread.</br>
+> Start and await coroutines from any thread.</br>
 
 ## Quick Start
 
@@ -43,20 +57,6 @@ await Awaiters.NextFrame;
 await Awaiters.MainUnityThread;
 //Task is now running on the Unity main thread
 
-```
-
-## Install
-
-#### Using UnityPackageManager (for Unity 2019.1 or later)
-
-Find the manifest.json file in the Packages folder of your project and edit it to look like this:
-```js
-{
-  "dependencies": {
-    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.3",
-    ...
-  },
-}
 ```
 
 ## Author
