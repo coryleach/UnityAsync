@@ -1,6 +1,7 @@
 <h1 align="center">Welcome to com.gameframe.async 👋</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
+  <a href="https://openupm.com/packages/com.gameframe.async/"><img src="https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com" /></a>
   <a href="https://twitter.com/coryleach">
     <img alt="Twitter: coryleach" src="https://img.shields.io/twitter/follow/coryleach.svg?style=social" target="_blank" />
   </a>
@@ -12,7 +13,15 @@
 
 ## Quick Package Install
 
-#### Using UnityPackageManager (for Unity 2019.1 or later)
+### Using OpenUPM
+
+The package is available on the [openupm registry](https://openupm.com). It's recommended to install it via [openupm-cli](https://github.com/openupm/openupm-cli).
+
+```
+openupm add com.gameframe.async
+```
+
+### Using UnityPackageManager (for Unity 2019.1 or later)
 
 Find the manifest.json file in the Packages folder of your project and edit it to look like this:
 ```js
