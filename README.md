@@ -18,7 +18,7 @@ Open the package manager window (menu: Window > Package Manager)<br/>
 Select "Add package from git URL...", fill in the pop-up with the following link:<br/>
 https://github.com/coryleach/UnityAsync.git#1.0.3<br/>
 
-### Using OpenUPM
+#### Using OpenUPM
 
 The package is available on the [openupm registry](https://openupm.com). It's recommended to install it via [openupm-cli](https://github.com/openupm/openupm-cli).
 
