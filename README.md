@@ -13,6 +13,11 @@
 
 ## Quick Package Install
 
+#### Using UnityPackageManager (for Unity 2019.3 or later)
+Open the package manager window (menu: Window > Package Manager)<br/>
+Select "Add package from git URL...", fill in the pop-up with the following link:<br/>
+https://github.com/coryleach/UnityAsync.git#1.0.3<br/>
+
 ### Using OpenUPM
 
 The package is available on the [openupm registry](https://openupm.com). It's recommended to install it via [openupm-cli](https://github.com/openupm/openupm-cli).
@@ -21,8 +26,7 @@ The package is available on the [openupm registry](https://openupm.com). It's re
 openupm add com.gameframe.async
 ```
 
-### Using UnityPackageManager (for Unity 2019.1 or later)
-
+#### Using UnityPackageManager (for Unity 2019.2 or earlier)
 Find the manifest.json file in the Packages folder of your project and edit it to look like this:
 ```js
 {
