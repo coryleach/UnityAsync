@@ -30,8 +30,8 @@ namespace Gameframe.Async
     {
         private class BackgroundThreadJoinAwaiter : IAwaitable
         {
-            private Action _continuation = null;
-            private bool isCompleted = false;
+            private Action _continuation;
+            private bool isCompleted;
             public bool IsCompleted => isCompleted;
 
             public void Complete()
