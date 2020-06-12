@@ -44,7 +44,7 @@ namespace Gameframe.Async.Tests.Coroutines
             Assert.IsTrue(result);
         }
         
-        private async Task<bool> TestAwaitCoroutineAsync()
+        private static async Task<bool> TestAwaitCoroutineAsync()
         {
             var hostBehaviour = new GameObject("Test").AddComponent<TestHostBehaviour>();
             bool result = false;

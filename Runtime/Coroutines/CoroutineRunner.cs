@@ -49,7 +49,7 @@ namespace Gameframe.Async.Coroutines
         /// <returns>awaitable task</returns>
         public static async Task RunAsync(IEnumerator routine)
         {
-            await UnityTaskUtil.RunOnUnityThreadAsync(() => Run(routine,cancellationTokenSource.Token) );
+            await UnityTaskUtil.RunOnUnityThreadAsync(async () => await RunAsync(routine,cancellationTokenSource.Token) );
         }
         
         /// <summary>
@@ -59,7 +59,7 @@ namespace Gameframe.Async.Coroutines
         /// <param name="enumerator">coroutine to run</param>
         public static void Start(IEnumerator enumerator)
         {
-            UnityTaskUtil.RunOnUnityThread(() => Run(enumerator,cancellationTokenSource.Token));
+            UnityTaskUtil.RunOnUnityThread(async () => await RunAsync(enumerator,cancellationTokenSource.Token));
         }
     
         /// <summary>
@@ -76,20 +76,13 @@ namespace Gameframe.Async.Coroutines
             StopAll();
         }
     
-        private static async void Run(IEnumerator routine, CancellationToken token)
+        private static async Task RunAsync(IEnumerator routine, CancellationToken token)
         {
-            try
+            var coroutine = RunCoroutine(routine);
+            while (!token.IsCancellationRequested && coroutine.MoveNext())
             {
-                var coroutine = RunCoroutine(routine);
-                while (!token.IsCancellationRequested && coroutine.MoveNext())
-                {
-                    //Task.Yield() on the Unity sync context appears to yield for one frame
-                    await Task.Yield();
-                }
-            }
-            catch (Exception e)
-            {
-                Debug.LogException(e);
+                //Task.Yield() on the Unity sync context appears to yield for one frame
+                await Task.Yield();
             }
         }
         
