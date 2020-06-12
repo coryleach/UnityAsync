@@ -21,7 +21,6 @@ namespace Gameframe.Async.Tests
         public void CurrentThreadIsUnityThread_False()
         {
             //Make sure that we start on the Unity thread 
-            var thisContext = SynchronizationContext.Current;
             Assert.IsTrue(UnityTaskUtil.CurrentThreadIsUnityThread,"Needs to start on the UnitySyncContext");
             
             //Task.Run should run off the Unity thread
