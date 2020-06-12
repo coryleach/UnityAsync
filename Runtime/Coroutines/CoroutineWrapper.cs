@@ -13,7 +13,7 @@ namespace Gameframe.Async.Coroutines
     {
         private CancellationToken _token;
         private CoroutineAwaiter _awaiter;
-        private Stack<IEnumerator> _processStack = new Stack<IEnumerator>();
+        private readonly Stack<IEnumerator> _processStack = new Stack<IEnumerator>();
 
         public CoroutineWrapper()
         {
@@ -36,8 +36,7 @@ namespace Gameframe.Async.Coroutines
         public IEnumerator Run(IEnumerator coroutine)
         {
             _processStack.Push(coroutine);
-
-            //yield return _coroutine;
+            
             while (!_token.IsCancellationRequested && _processStack.Count > 0)
             {
                 var currentCoroutine = _processStack.Peek();

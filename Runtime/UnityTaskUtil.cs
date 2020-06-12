@@ -75,7 +75,7 @@ namespace Gameframe.Async
             }
             var taskFactory = new TaskFactory<T>(UnityTaskScheduler);
             var task = taskFactory.StartNew(func);
-            await task;
+            await task.ConfigureAwait(false);
             return task.Result;
         }
         
@@ -143,11 +143,30 @@ namespace Gameframe.Async
         /// <param name="parent">Transform the prefab should be parented to</param>
         /// <typeparam name="T">Type of the prefab</typeparam>
         /// <returns>Task that contains the instantiated prefab as the result</returns>
-        public static async Task<T> InstantiateAsync<T>(T prefab, Transform parent = null) where T : UnityEngine.Object
+        public static async Task<T> InstantiateAsync<T>(T prefab, Transform parent) where T : UnityEngine.Object
         {
             var task = UnityTaskFactory.StartNew(() =>
             {
                 var instance = UnityEngine.Object.Instantiate(prefab, parent);
+                instance.name = prefab.name;
+                return instance;
+            });
+            await task;
+            return task.Result as T;
+        }
+        
+        /// <summary>
+        /// Instantiate a prefab asynchronously
+        /// Always creates a task on the Unity task scheduler even if already on the main thread.
+        /// </summary>
+        /// <param name="prefab">Prefab to be instantiated</param>
+        /// <typeparam name="T">Type of the prefab</typeparam>
+        /// <returns>Task that contains the instantiated prefab as the result</returns>
+        public static async Task<T> InstantiateAsync<T>(T prefab) where T : UnityEngine.Object
+        {
+            var task = UnityTaskFactory.StartNew(() =>
+            {
+                var instance = UnityEngine.Object.Instantiate(prefab);
                 instance.name = prefab.name;
                 return instance;
             });

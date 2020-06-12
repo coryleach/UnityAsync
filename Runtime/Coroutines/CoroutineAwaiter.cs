@@ -5,9 +5,9 @@ namespace Gameframe.Async.Coroutines
 {
     public class CoroutineAwaiter : INotifyCompletion
     {
-        private Action _continuation = null;
-        private Exception _exception = null;
-        private bool isCompleted = false;
+        private Action _continuation;
+        private Exception _exception;
+        private bool isCompleted;
         public bool IsCompleted => isCompleted;
 
         public void Complete(Exception exception)
