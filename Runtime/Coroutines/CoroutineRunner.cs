@@ -49,7 +49,7 @@ namespace Gameframe.Async.Coroutines
         /// <returns>awaitable task</returns>
         public static async Task RunAsync(IEnumerator routine)
         {
-            await UnityTaskUtil.RunOnUnityThreadAsync(async () => await RunAsync(routine,cancellationTokenSource.Token) );
+            await UnityTaskUtil.RunOnUnityThreadAsync(async () => await RunAsync(routine,cancellationTokenSource.Token).ConfigureAwait(false) );
         }
         
         /// <summary>
@@ -59,7 +59,7 @@ namespace Gameframe.Async.Coroutines
         /// <param name="enumerator">coroutine to run</param>
         public static void Start(IEnumerator enumerator)
         {
-            UnityTaskUtil.RunOnUnityThread(async () => await RunAsync(enumerator,cancellationTokenSource.Token));
+            UnityTaskUtil.RunOnUnityThread(async () => await RunAsync(enumerator,cancellationTokenSource.Token).ConfigureAwait(false));
         }
     
         /// <summary>
