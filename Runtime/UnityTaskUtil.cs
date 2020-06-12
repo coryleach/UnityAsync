@@ -151,7 +151,7 @@ namespace Gameframe.Async
                 instance.name = prefab.name;
                 return instance;
             });
-            await task;
+            await task.ConfigureAwait(false);
             return task.Result as T;
         }
         
@@ -170,7 +170,7 @@ namespace Gameframe.Async
                 instance.name = prefab.name;
                 return instance;
             });
-            await task;
+            await task.ConfigureAwait(false);
             return task.Result as T;
         }
 
