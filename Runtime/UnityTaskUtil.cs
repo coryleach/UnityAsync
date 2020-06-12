@@ -94,7 +94,7 @@ namespace Gameframe.Async
             }
             var taskFactory = new TaskFactory(UnityTaskScheduler);
             var task = taskFactory.StartNew(action);
-            await task;
+            await task.ConfigureAwait(false);
         }
 
         /// <summary>
