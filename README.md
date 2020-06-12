@@ -74,8 +74,8 @@ await Awaiters.MainUnityThread;
 
 👤 **Cory Leach**
 
-*  Twitter:  [@coryleach](https://twitter.com/coryleach)  
-*  Github:  [@coryleach](https://github.com/coryleach)  
+*   Twitter: [@coryleach](https://twitter.com/coryleach)  
+*   Github: [@coryleach](https://github.com/coryleach)  
 
 ## Show your support
 
