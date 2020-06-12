@@ -95,6 +95,7 @@ namespace Gameframe.Async
             {
                 do
                 {
+                    //Block thread until completed
                 } while (!isCompleted);
             }
 
