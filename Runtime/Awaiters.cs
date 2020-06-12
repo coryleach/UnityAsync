@@ -28,27 +28,9 @@ namespace Gameframe.Async
 
     public class WaitForBackground
     {
-        private class BackgroundThreadJoinAwaiter : IAwaitable
+        private class BackgroundThreadJoinAwaiter : AbstractThreadJoinAwaiter
         {
-            private Action _continuation;
-            private bool isCompleted;
-            public bool IsCompleted => isCompleted;
-
-            public void Complete()
-            {
-                isCompleted = true;
-                _continuation?.Invoke();
-            }
-
-            public void GetResult()
-            {
-                do
-                {
-                    //This will block the thread until the task is completed
-                } while (!isCompleted);
-            }
-
-            void INotifyCompletion.OnCompleted(Action continuation)
+            public override void OnCompleted(Action continuation)
             {
                 if (isCompleted)
                 {
@@ -79,29 +61,12 @@ namespace Gameframe.Async
 
     public class WaitForUnityThread
     {       
-        private class MainThreadJoinAwaiter : IAwaitable
+        private class MainThreadJoinAwaiter : AbstractThreadJoinAwaiter
         {
-            private Action _continuation;
-            private bool isCompleted;
-            public bool IsCompleted => isCompleted;
-
-            public void Complete()
-            {
-                isCompleted = true;
-                _continuation?.Invoke();
-            }
-
-            public void GetResult()
-            {
-                do
-                {
-                    //Block thread until completed
-                } while (!isCompleted);
-            }
-
-            void INotifyCompletion.OnCompleted(Action continuation)
+            public override void OnCompleted(Action continuation)
             {
                 _continuation = continuation;
+
             }
         }
         
@@ -138,6 +103,32 @@ namespace Gameframe.Async
         void GetResult();
     }
     
+    /// <summary>
+    /// Used internally to implement some custom await continuation logic
+    /// </summary>
+    internal abstract class AbstractThreadJoinAwaiter : IAwaitable
+    {
+        protected Action _continuation;
+        protected bool isCompleted;
+        public bool IsCompleted => isCompleted;
+
+        public void Complete()
+        {
+            isCompleted = true;
+            _continuation?.Invoke();
+        }
+
+        public void GetResult()
+        {
+            do
+            {
+                //This will block the thread until the task is completed
+            } while (!isCompleted);
+        }
+
+        public abstract void OnCompleted(Action continuation);
+    }
+
 }
 
 
