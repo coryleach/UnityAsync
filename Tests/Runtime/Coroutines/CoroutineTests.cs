@@ -53,7 +53,7 @@ namespace Gameframe.Async.Tests.Coroutines
             return result;
         }
 
-        private IEnumerator LongRunningCoroutine(Action onComplete)
+        private static IEnumerator LongRunningCoroutine(Action onComplete)
         {
             yield return new WaitForSeconds(0.05f);
             onComplete?.Invoke();

@@ -17,7 +17,7 @@ namespace Gameframe.Async.Tests
             yield return task.AsIEnumerator();
         }
         
-        private async Task DoTest()
+        private static async Task DoTest()
         {
             Assert.IsTrue(UnityTaskUtil.UnitySynchronizationContext != null);
             
