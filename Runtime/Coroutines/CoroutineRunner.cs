@@ -78,11 +78,18 @@ namespace Gameframe.Async.Coroutines
     
         private static async void Run(IEnumerator routine, CancellationToken token)
         {
-            var coroutine = RunCoroutine(routine);
-            while (!token.IsCancellationRequested && coroutine.MoveNext())
+            try
             {
-                //Task.Yield() on the Unity sync context appears to yield for one frame
-                await Task.Yield();
+                var coroutine = RunCoroutine(routine);
+                while (!token.IsCancellationRequested && coroutine.MoveNext())
+                {
+                    //Task.Yield() on the Unity sync context appears to yield for one frame
+                    await Task.Yield();
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
             }
         }
         
