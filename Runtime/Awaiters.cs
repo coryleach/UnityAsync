@@ -44,6 +44,7 @@ namespace Gameframe.Async
             {
                 do
                 {
+                    //This will block the thread until the task is completed
                 } while (!isCompleted);
             }
 
@@ -80,8 +81,8 @@ namespace Gameframe.Async
     {       
         private class MainThreadJoinAwaiter : IAwaitable
         {
-            private Action _continuation = null;
-            private bool isCompleted = false;
+            private Action _continuation;
+            private bool isCompleted;
             public bool IsCompleted => isCompleted;
 
             public void Complete()
