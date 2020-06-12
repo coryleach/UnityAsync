@@ -1,11 +1,9 @@
 <h1 align="center">Welcome to com.gameframe.async 👋</h1>
-<p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000" />
-  <a href="https://openupm.com/packages/com.gameframe.async/"><img src="https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com" /></a>
-  <a href="https://twitter.com/coryleach">
-    <img alt="Twitter: coryleach" src="https://img.shields.io/twitter/follow/coryleach.svg?style=social" target="_blank" />
-  </a>
-</p>
+
+[![twitter](https://img.shields.io/twitter/follow/coryleach.svg?style=social)](https://twitter.com/coryleach)
+[![projectversion](https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000)]
+[![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
 
 > Async task utility package for Unity</br>
 > Helper methods for starting tasks on the Unity thread.</br>
@@ -76,8 +74,8 @@ await Awaiters.MainUnityThread;
 
 👤 **Cory Leach**
 
-*  Twitter: [@coryleach](https://twitter.com/coryleach)
-*  Github: [@coryleach](https://github.com/coryleach)
+*  Twitter:  [@coryleach](https://twitter.com/coryleach)  
+*  Github:  [@coryleach](https://github.com/coryleach)  
 
 ## Show your support
 
