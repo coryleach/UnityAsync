@@ -1,8 +1,8 @@
 <h1 align="center">Welcome to com.gameframe.async 👋</h1>
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
 ![version](https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000)
 [![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
 [![license](https://img.shields.io/github/license/coryleach/UnityAsync)](https://github.com/coryleach/UnityAsync/blob/master/LICENSE)
 
 [![twitter](https://img.shields.io/twitter/follow/coryleach.svg?style=social)](https://twitter.com/coryleach)
