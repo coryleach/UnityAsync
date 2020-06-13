@@ -1,12 +1,15 @@
 {
   "name": "com.gameframe.async",
   "displayName": "Gameframe.Async",
-  "version": "1.0.3",
-  "description": "Async task utility library for Unity",
+  "version": "1.0.4",
+  "description": "> Async task utility package for Unity  \n> Helper methods for starting tasks on the Unity thread.  \n> Start and await coroutines from any thread.",
   "keywords": [],
   "author": {
     "name": "Cory Leach",
     "email": "cory.leach@gmail.com",
-    "url": "https://coryleach.info"
-  }
+    "url": "https://github.com/coryleach",
+    "github": "coryleach",
+    "twitter": "coryleach"
+  },
+  "repositoryName": "UnityAsync"
 }

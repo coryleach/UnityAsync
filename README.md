@@ -1,15 +1,41 @@
-<h1 align="center">Welcome to com.gameframe.async 👋</h1>
+<h1 align="center">Gameframe.Async 👋</h1>
 
+<!-- BADGE-START -->
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
-![version](https://img.shields.io/badge/version-1.0.3-blue.svg?cacheSeconds=2592000)
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/coryleach/UnityAsync?include_prereleases)
 [![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
 [![license](https://img.shields.io/github/license/coryleach/UnityAsync)](https://github.com/coryleach/UnityAsync/blob/master/LICENSE)
 
 [![twitter](https://img.shields.io/twitter/follow/coryleach.svg?style=social)](https://twitter.com/coryleach)
+<!-- BADGE-END -->
 
-> Async task utility package for Unity</br>
-> Helper methods for starting tasks on the Unity thread.</br>
-> Start and await coroutines from any thread.</br>
+> Async task utility package for Unity    
+> Helper methods for starting tasks on the Unity thread.    
+> Start and await coroutines from any thread.
+
+## Quick Package Install
+
+#### Using UnityPackageManager (for Unity 2019.3 or later)
+Open the package manager window (menu: Window > Package Manager)<br/>
+Select "Add package from git URL...", fill in the pop-up with the following link:<br/>
+https://github.com/coryleach/UnityAsync.git#1.0.4<br/>
+
+#### Using UnityPackageManager (for Unity 2019.1 or later)
+
+Find the manifest.json file in the Packages folder of your project and edit it to look like this:
+```js
+{
+  "dependencies": {
+    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.4",
+    ...
+  },
+}
+```
+
+<!-- DOC-START -->
+<!-- 
+Changes between 'DOC START' and 'DOC END' will not be modified by readme update scripts
+-->
 
 ## Quick Package Install
 
@@ -72,16 +98,19 @@ await Awaiters.MainUnityThread;
 
 ```
 
+<!-- DOC-END -->
+
 ## Author
 
 👤 **Cory Leach**
 
-*   Twitter: [@coryleach](https://twitter.com/coryleach)  
-*   Github: [@coryleach](https://github.com/coryleach)  
+* Twitter: [@coryleach](https://twitter.com/coryleach)
+* Github: [@coryleach](https://github.com/coryleach)
+
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_This README was generated with ❤️ by [Gameframe.Packages](https://github.com/coryleach/unitypackages)_
