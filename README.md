@@ -4,6 +4,7 @@
 <h1 align="center">Gameframe.Async 👋</h1>
 
 <!-- BADGE-START -->
+[![Build Status](https://travis-ci.org/coryleach/UnityAsync.svg?branch=master)](https://travis-ci.org/coryleach/UnityAsync)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/coryleach/UnityAsync?include_prereleases)
 [![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
