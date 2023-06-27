@@ -4,12 +4,10 @@
 <h1 align="center">Gameframe.Async 👋</h1>
 
 <!-- BADGE-START -->
-[![Build Status](https://travis-ci.org/coryleach/UnityAsync.svg?branch=master)](https://travis-ci.org/coryleach/UnityAsync)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/d2749fdbc70f422a9d1efccb56d48bff)](https://www.codacy.com/manual/coryleach/UnityAsync?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=coryleach/UnityAsync&amp;utm_campaign=Badge_Grade)
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/coryleach/UnityAsync?include_prereleases)
 [![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
-[![license](https://img.shields.io/github/license/coryleach/UnityAsync)](https://github.com/coryleach/UnityAsync/blob/master/LICENSE)
-
+![version](https://img.shields.io/github/package-json/v/coryleach/{PACKAGE.REPOSITORYNAME})
+[![license](https://img.shields.io/github/license/coryleach/{PACKAGE.REPOSITORYNAME})](https://github.com/coryleach/{PACKAGE.REPOSITORYNAME}/blob/master/LICENSE)
 [![twitter](https://img.shields.io/twitter/follow/coryleach.svg?style=social)](https://twitter.com/coryleach)
 <!-- BADGE-END -->
 
@@ -22,7 +20,7 @@
 #### Using UnityPackageManager (for Unity 2019.3 or later)
 Open the package manager window (menu: Window > Package Manager)<br/>
 Select "Add package from git URL...", fill in the pop-up with the following link:<br/>
-https://github.com/coryleach/UnityAsync.git#1.0.4<br/>
+https://github.com/coryleach/UnityAsync.git#1.0.5<br/>
 
 #### Using UnityPackageManager (for Unity 2019.1 or later)
 
@@ -30,14 +28,14 @@ Find the manifest.json file in the Packages folder of your project and edit it t
 ```js
 {
   "dependencies": {
-    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.4",
+    "com.gameframe.async": "https://github.com/coryleach/UnityAsync.git#1.0.5",
     ...
   },
 }
 ```
 
 <!-- DOC-START -->
-<!-- 
+<!--
 Changes between 'DOC START' and 'DOC END' will not be modified by readme update scripts
 -->
 
@@ -95,8 +93,8 @@ await Awaiters.MainUnityThread;
 
 
 ## Show your support
-
 Give a ⭐️ if this project helped you!
+{AUTHOR.KOFI}
 
 ***
 _This README was generated with ❤️ by [Gameframe.Packages](https://github.com/coryleach/unitypackages)_
