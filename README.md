@@ -6,8 +6,7 @@
 <!-- BADGE-START -->
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/coryleach/UnityAsync?include_prereleases)
 [![openupm](https://img.shields.io/npm/v/com.gameframe.async?label=openupm&amp;registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.gameframe.async/)
-![version](https://img.shields.io/github/package-json/v/coryleach/{PACKAGE.REPOSITORYNAME})
-[![license](https://img.shields.io/github/license/coryleach/{PACKAGE.REPOSITORYNAME})](https://github.com/coryleach/{PACKAGE.REPOSITORYNAME}/blob/master/LICENSE)
+[![license](https://img.shields.io/github/license/coryleach/UnityAsync)](https://github.com/coryleach/UnityAsync/blob/master/LICENSE)
 [![twitter](https://img.shields.io/twitter/follow/coryleach.svg?style=social)](https://twitter.com/coryleach)
 <!-- BADGE-END -->
 
