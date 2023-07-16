@@ -20,7 +20,7 @@ namespace Gameframe.Async
         }
 
         public static bool CurrentThreadIsUnityThread => UnityThreadId == Thread.CurrentThread.ManagedThreadId;
-        
+
         public static TaskScheduler UnityTaskScheduler { get; private set; }
 
         public static TaskFactory<UnityEngine.Object> UnityTaskFactory { get; private set; }
@@ -42,7 +42,7 @@ namespace Gameframe.Async
             RunOnUnityScheduler(() => { host.StartCoroutine(wrapper.Run(coroutine)); });
             return wrapper;
         }
-        
+
         /// <summary>
         /// Invokes an action on the Unity main thread.
         /// Will invoke immediately if already on the main thread.
@@ -75,10 +75,10 @@ namespace Gameframe.Async
             }
             var taskFactory = new TaskFactory<T>(UnityTaskScheduler);
             var task = taskFactory.StartNew(func);
-            await task.ConfigureAwait(false);
+            await task;
             return task.Result;
         }
-        
+
         /// <summary>
         /// Runs the given action on the Unity main thread
         /// Will invoke immediately if already on the main thread
@@ -94,7 +94,7 @@ namespace Gameframe.Async
             }
             var taskFactory = new TaskFactory(UnityTaskScheduler);
             var task = taskFactory.StartNew(action);
-            await task.ConfigureAwait(false);
+            await task;
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace Gameframe.Async
                 UnitySynchronizationContext.Post(_=> action(), null);
             }
         }
-        
+
         /// <summary>
         /// Runs the given async delegate on the Unity main thread
         /// </summary>
@@ -151,10 +151,10 @@ namespace Gameframe.Async
                 instance.name = prefab.name;
                 return instance;
             });
-            await task.ConfigureAwait(false);
+            await task;
             return task.Result as T;
         }
-        
+
         /// <summary>
         /// Instantiate a prefab asynchronously
         /// Always creates a task on the Unity task scheduler even if already on the main thread.
@@ -170,7 +170,7 @@ namespace Gameframe.Async
                 instance.name = prefab.name;
                 return instance;
             });
-            await task.ConfigureAwait(false);
+            await task;
             return task.Result as T;
         }
 
