@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
+using Object = System.Object;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -86,10 +87,18 @@ namespace Gameframe.Async.Coroutines
             }
         }
 
-        private static IEnumerator RunCoroutine(object state)
+        private static IEnumerator RunCoroutineV2(IEnumerator state)
+        {
+            var go = new GameObject();
+            var host = go.AddComponent<CoroutineHost>();
+            yield return host.StartCoroutine(state);
+            UnityEngine.Object.Destroy(go);
+        }
+
+        private static IEnumerator RunCoroutine(IEnumerator state)
         {
             var processStack = new Stack<IEnumerator>();
-            processStack.Push((IEnumerator)state);
+            processStack.Push(state);
 
             while (processStack.Count > 0)
             {
@@ -116,6 +125,16 @@ namespace Gameframe.Async.Coroutines
                     {
                         processStack.Push(innerCoroutine);
                     }
+                    else if (currentCoroutine.Current is YieldInstruction yieldInstruction)
+                    {
+                        //We unfortunately need to use Unity to handle anything that is a YieldInstruction
+                        var running = true;
+                        CoroutineHost.Run(yieldInstruction, () => { running = false; });
+                        while ( running )
+                        {
+                            yield return null;
+                        }
+                    }
                     else
                     {
                         yield return currentCoroutine.Current;
@@ -123,6 +142,17 @@ namespace Gameframe.Async.Coroutines
                 }
 
             }
+        }
+
+        private static IEnumerator EnumerateCoroutine(Coroutine coroutine)
+        {
+            yield return coroutine;
+        }
+
+        private static IEnumerator RunHostedCoroutine(YieldInstruction instruction, Action onComplete)
+        {
+            yield return instruction;
+            onComplete?.Invoke();
         }
 
     }

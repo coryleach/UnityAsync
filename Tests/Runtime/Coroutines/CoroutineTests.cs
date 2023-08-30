@@ -38,12 +38,32 @@ namespace Gameframe.Async.Tests.Coroutines
                 Assert.IsFalse(UnityTaskUtil.CurrentThreadIsUnityThread);
                 UnityTaskUtil.StartCoroutineAsync(LongRunningCoroutine(() => { result = true; }), hostBehaviour).GetAwaiter().GetResult();
             });
-            
+
             yield return new WaitUntil(()=>task.IsCompleted);
-            
+
             Assert.IsTrue(result);
         }
-        
+
+        [UnityTest]
+        public IEnumerator CanWaitForSeconds()
+        {
+            float duration = 1f;
+            float t = Time.time;
+            bool done = false;
+            CoroutineRunner.RunAsync(LongRunningCoroutine(() =>
+            {
+                done = true;
+            }, duration));
+
+            while (!done)
+            {
+                yield return null;
+            }
+
+            float delta = Time.time - t;
+            Assert.IsTrue(delta >= duration, $"Failed to wait duration: Delta: {delta} should be >=  actual duration: {duration}");
+        }
+
         private static async Task<bool> TestAwaitCoroutineAsync()
         {
             var hostBehaviour = new GameObject("Test").AddComponent<TestHostBehaviour>();
@@ -53,15 +73,15 @@ namespace Gameframe.Async.Tests.Coroutines
             return result;
         }
 
-        private static IEnumerator LongRunningCoroutine(Action onComplete)
+        private static IEnumerator LongRunningCoroutine(Action onComplete, float duration = 0.05f)
         {
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(duration);
             onComplete?.Invoke();
         }
     }
-    
+
     public class TestHostBehaviour : MonoBehaviour
     {
     }
-    
+
 }
