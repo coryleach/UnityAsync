@@ -77,6 +77,9 @@ namespace Gameframe.Async.Coroutines
         private static async Task RunAsync(IEnumerator routine, CancellationToken token)
         {
             var running = true;
+            // I tried creating my own runner for coroutines that doesn't require MonoBehaviour
+            // However, Unity's YieldInstruction objects such as WaitForSeconds are unable to be handled gracefully this way
+            // To implement Unity's YieldInstruction objects correctly would probably require using reflection and isn't very practical
             var coroutine = CoroutineHost.RunCoroutine(routine, () =>
             {
                 running = false;
