@@ -30,10 +30,13 @@ namespace Gameframe.Async.Coroutines
 
         private static CoroutineHost GetHost()
         {
-            if (_instance == null)
+            if (_instance != null)
             {
-                _instance = new GameObject("_CoroutineHost").AddComponent<CoroutineHost>();
+                return _instance;
             }
+
+            _instance = new GameObject("_CoroutineHost").AddComponent<CoroutineHost>();
+            _instance.gameObject.hideFlags = HideFlags.DontSave | HideFlags.HideInHierarchy;
             return _instance;
         }
 

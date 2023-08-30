@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using Object = System.Object;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -77,8 +74,6 @@ namespace Gameframe.Async.Coroutines
             StopAll();
         }
 
-        private static CancellationTokenSource coroutineCompleteSource = new CancellationTokenSource();
-
         private static async Task RunAsync(IEnumerator routine, CancellationToken token)
         {
             var running = true;
@@ -97,66 +92,6 @@ namespace Gameframe.Async.Coroutines
             {
                 CoroutineHost.KillCoroutine(coroutine);
             }
-        }
-
-        private static IEnumerator RunCoroutine(IEnumerator state)
-        {
-            var processStack = new Stack<IEnumerator>();
-            processStack.Push(state);
-
-            while (processStack.Count > 0)
-            {
-                var currentCoroutine = processStack.Peek();
-                var done = false;
-
-                try
-                {
-                    done = !currentCoroutine.MoveNext();
-                }
-                catch (Exception e)
-                {
-                    Debug.LogException(e);
-                    yield break;
-                }
-
-                if (done)
-                {
-                    processStack.Pop();
-                }
-                else
-                {
-                    if (currentCoroutine.Current is IEnumerator innerCoroutine)
-                    {
-                        processStack.Push(innerCoroutine);
-                    }
-                    else if (currentCoroutine.Current is YieldInstruction yieldInstruction)
-                    {
-                        //We unfortunately need to use Unity to handle anything that is a YieldInstruction
-                        var running = true;
-                        CoroutineHost.Run(yieldInstruction, () => { running = false; });
-                        while ( running )
-                        {
-                            yield return null;
-                        }
-                    }
-                    else
-                    {
-                        yield return currentCoroutine.Current;
-                    }
-                }
-
-            }
-        }
-
-        private static IEnumerator EnumerateCoroutine(Coroutine coroutine)
-        {
-            yield return coroutine;
-        }
-
-        private static IEnumerator RunHostedCoroutine(YieldInstruction instruction, Action onComplete)
-        {
-            yield return instruction;
-            onComplete?.Invoke();
         }
 
     }
