@@ -10,25 +10,42 @@ namespace Gameframe.Async.Coroutines
 
         public static void Run(YieldInstruction yieldInstruction, Action onComplete = null)
         {
-            if (_instance == null)
-            {
-                _instance = new GameObject("_CoroutineHost").AddComponent<CoroutineHost>();
-            }
-            _instance.StartCoroutine(RunYieldInstruction(yieldInstruction, onComplete));;
+            GetHost().StartCoroutine(RunYieldInstruction(yieldInstruction, onComplete));;
         }
 
         public static Coroutine RunCoroutine(YieldInstruction yieldInstruction, Action onComplete = null)
+        {
+            return GetHost().StartCoroutine(RunYieldInstruction(yieldInstruction, onComplete));;
+        }
+
+        public static Coroutine RunCoroutine(IEnumerator routine, Action onComplete = null)
+        {
+            return GetHost().StartCoroutine(RunRoutine(routine, onComplete));;
+        }
+
+        public static void KillCoroutine(Coroutine coroutine)
+        {
+            GetHost().StopCoroutine(coroutine);
+        }
+
+        private static CoroutineHost GetHost()
         {
             if (_instance == null)
             {
                 _instance = new GameObject("_CoroutineHost").AddComponent<CoroutineHost>();
             }
-            return _instance.StartCoroutine(RunYieldInstruction(yieldInstruction, onComplete));;
+            return _instance;
         }
 
         private static IEnumerator RunYieldInstruction(YieldInstruction instruction, Action onComplete)
         {
             yield return instruction;
+            onComplete?.Invoke();
+        }
+
+        private static IEnumerator RunRoutine(IEnumerator routine, Action onComplete)
+        {
+            yield return routine;
             onComplete?.Invoke();
         }
 

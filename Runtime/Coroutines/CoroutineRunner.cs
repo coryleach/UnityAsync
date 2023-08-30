@@ -77,22 +77,26 @@ namespace Gameframe.Async.Coroutines
             StopAll();
         }
 
+        private static CancellationTokenSource coroutineCompleteSource = new CancellationTokenSource();
+
         private static async Task RunAsync(IEnumerator routine, CancellationToken token)
         {
-            var coroutine = RunCoroutine(routine);
-            while (!token.IsCancellationRequested && coroutine.MoveNext())
+            var running = true;
+            var coroutine = CoroutineHost.RunCoroutine(routine, () =>
+            {
+                running = false;
+            });
+
+            while (!token.IsCancellationRequested && running)
             {
                 //Task.Yield() on the Unity sync context appears to yield for one frame
                 await Task.Yield();
             }
-        }
 
-        private static IEnumerator RunCoroutineV2(IEnumerator state)
-        {
-            var go = new GameObject();
-            var host = go.AddComponent<CoroutineHost>();
-            yield return host.StartCoroutine(state);
-            UnityEngine.Object.Destroy(go);
+            if (running)
+            {
+                CoroutineHost.KillCoroutine(coroutine);
+            }
         }
 
         private static IEnumerator RunCoroutine(IEnumerator state)
